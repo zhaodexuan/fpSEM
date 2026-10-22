@@ -1,0 +1,5 @@
+export(fp_judge)
+export(fp_compare)
+export(fp_reference)
+S3method(print, fp_judge)
+S3method(print, fp_compare)

@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use fpSEM in academic work, please cite it as below."
+title: "fpSEM: Fitting Propensity for Structural Equation Models"
+abstract: "Computes and compares fitting propensity for structural equation models, with explicit conditions for the fit statistic, degrees of freedom, data space, convergence policy, and improper solutions."
+authors:
+  - family-names: "Zhao"
+    given-names: "Dexuan"
+version: 0.1.0
+date-released: 2026-10-22
+license: MIT
+repository-code: "https://github.com/zhaodexuan/fpSEM"
+keywords:
+  - fitting propensity
+  - structural equation modeling
+  - bifactor models
+  - factor models
+  - R

@@ -1,0 +1,16 @@
+Package: fpSEM
+Type: Package
+Title: Fitting Propensity for Structural Equation Models
+Version: 0.1.0
+Date: 2026-10-22
+Authors@R: person("Dexuan", "Zhao", email = "zhaodexuan@users.noreply.github.com", role = c("aut", "cre"))
+Description: Computes and compares fitting propensity (FP) for structural
+    equation models. The package makes the conditions of an FP claim explicit:
+    fit statistic, threshold, degrees of freedom, data space, convergence
+    policy, common draws, and improper-solution rate.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports: stats, utils
+URL: https://github.com/zhaodexuan/fpSEM
+BugReports: https://github.com/zhaodexuan/fpSEM/issues
