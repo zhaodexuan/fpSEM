@@ -1,0 +1,11 @@
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rcheck/
+*.tar.gz
+lib/
+.Renviron
+.DS_Store
+Thumbs.db
