@@ -1,0 +1,7 @@
+^\.github$
+^CITATION\.cff$
+^LICENSE\.md$
+^UPLOAD_CHECKLIST\.md$
+^CONTRIBUTING\.md$
+^data-raw$
+^\.gitignore$
