@@ -43,3 +43,11 @@
 "B5","Study2",16,48,88,"positive_manifold","uniform","fmin",NA,"default",2000,365,0.073,0.997260273972603,TRUE,"0.1.0","single",4,0.147945205479452,0.112328767123288,0.186301369863014,NA,NA
 "B5","Study2",16,48,88,"positive_manifold","uniform","fmin",NA,"force",2000,5000,1,0.9998,TRUE,"0.1.0","region",NA,0.4206,0.414655714285714,0.426628571428571,0.004,0.9254
 "B5","Study2",16,48,88,"positive_manifold","uniform","fmin",NA,"force",2000,5000,1,0.9998,TRUE,"0.1.0","single",4,0.1522,0.1422,0.1622,NA,NA
+"B4","Study1",16,48,88,"ordinal_positive_manifold","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.991,TRUE,"0.2.0","single",1.2,0.865,0.843,0.885,NA,NA
+"B4","Study1",16,48,88,"ordinal_positive_manifold","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.991,TRUE,"0.2.0","region",NA,0.731588235294118,0.718529411764706,0.744,0.14,0.997
+"CF4","Study1",16,38,98,"ordinal_positive_manifold","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.985,TRUE,"0.2.0","single",1.2,0.622,0.592,0.651,NA,NA
+"CF4","Study1",16,38,98,"ordinal_positive_manifold","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.985,TRUE,"0.2.0","region",NA,0.551235294117647,0.537116176470588,0.56465,0.022,0.977
+"B4","Study1",16,48,88,"ordinal_full_elliptope","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.982,TRUE,"0.2.0","single",2,0.653,0.623,0.682,NA,NA
+"B4","Study1",16,48,88,"ordinal_full_elliptope","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.982,TRUE,"0.2.0","region",NA,0.691428571428571,0.67547619047619,0.707239285714286,0.195,0.978
+"CF4","Study1",16,38,98,"ordinal_full_elliptope","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.995,TRUE,"0.2.0","single",2,0.318,0.29,0.347,NA,NA
+"CF4","Study1",16,38,98,"ordinal_full_elliptope","uniform","wlsmv_fmin",NA,"force",2000,1000,1,0.995,TRUE,"0.2.0","region",NA,0.454857142857143,0.437233333333333,0.472858333333333,0.03,0.911

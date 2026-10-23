@@ -28,10 +28,10 @@ fp_compare(fmin_focal, fmin_comparator,
 \item{q_focal, q_comparator}{Numbers of free parameters.}
 \item{n_obs}{Sample size used in fitting.}
 \item{label_focal, label_comparator}{Model labels.}
-\item{statistic}{Fit statistic; currently \code{"fmin"}.}
+\item{statistic}{One of \code{"fmin"}, \code{"srmr"}, \code{"rmsea"}, or \code{"wlsmv_fmin"}.}
 \item{threshold}{Fit threshold.}
 \item{formula_n}{Formula N for RMSEA; required when \code{statistic = "rmsea"}.}
-\item{data_space}{\code{"positive_manifold"} or \code{"full_elliptope"}; required.}
+\item{data_space}{One of \code{"positive_manifold"}, \code{"full_elliptope"}, \code{"ordinal"}, \code{"ordinal_positive_manifold"}, \code{"ordinal_full_elliptope"}, or \code{"data_informed"}; required.}
 \item{convergence}{\code{"force"} or \code{"default"}.}
 \item{convergence_rate_focal, convergence_rate_comparator}{Default convergence rates.}
 \item{improper_rate_focal, improper_rate_comparator}{Improper-solution rates.}

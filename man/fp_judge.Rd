@@ -9,7 +9,7 @@ freedom, data space, and convergence policy.
 }
 \usage{
 fp_judge(fmin, df, q, n_obs,
-         statistic = c("fmin", "srmr", "rmsea"),
+         statistic = c("fmin", "srmr", "rmsea", "wlsmv_fmin"),
          threshold, formula_n = NULL, data_space,
          convergence = c("default", "force"),
          convergence_rate = NA_real_, improper_rate = NA_real_,
@@ -20,10 +20,10 @@ fp_judge(fmin, df, q, n_obs,
 \item{df}{Model degrees of freedom.}
 \item{q}{Number of free parameters.}
 \item{n_obs}{Sample size used in fitting (\code{sample.nobs}).}
-\item{statistic}{One of \code{"fmin"}, \code{"srmr"}, or \code{"rmsea"}.}
+\item{statistic}{One of \code{"fmin"}, \code{"srmr"}, \code{"rmsea"}, or \code{"wlsmv_fmin"}.}
 \item{threshold}{Fit threshold, for example 4.0 for \code{fmin} or .05 for SRMR.}
 \item{formula_n}{Formula N for RMSEA; required when \code{statistic = "rmsea"}.}
-\item{data_space}{\code{"positive_manifold"} or \code{"full_elliptope"}; required.}
+\item{data_space}{One of \code{"positive_manifold"}, \code{"full_elliptope"}, \code{"ordinal"}, \code{"ordinal_positive_manifold"}, \code{"ordinal_full_elliptope"}, or \code{"data_informed"}; required.}
 \item{convergence}{\code{"default"} or \code{"force"}.}
 \item{convergence_rate}{Default convergence rate, if known.}
 \item{improper_rate}{Proportion of returned solutions with \code{post.check = FALSE}.}

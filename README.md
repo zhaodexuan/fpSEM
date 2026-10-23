@@ -81,20 +81,27 @@ fp_compare(
 `fp_compare()` also warns when the single-threshold and region summaries differ
 by more than 10%, or when they have opposite signs.
 
+## What's new in 0.2.0
+
+- `wlsmv_fmin` as a statistic and ordinal data spaces.
+- `fp_calibrate()` for data-driven threshold selection.
+- Graded improper-solution warnings (>5%, >25%, >95%).
+- Eight ordinal reference rows (B0/B1 x B4/CF4).
+
 ## Reference table
 
-`fp_reference()` loads `inst/extdata/fp_reference.csv`, generated from the O6
-simulation grid:
+`fp_reference()` loads `inst/extdata/fp_reference.csv`, with continuous and
+ordinal rows:
 
-- 14 force-converged cells (Study 1: single, CF4, higher, B4; Study 2: B3, B4,
-  B5; each in the positive manifold and the full elliptope).
-- 8 default-convergence cells (B4/CF4 and B3/B5 in both spaces).
-- Two summaries per cell: `single` (`fmin < 4.0`) and `region` (`fmin` in
-  [3, 6]).
+- 44 continuous rows: 14 force-converged cells and 8 default-convergence cells,
+  each with a `single` (`fmin < 4.0`) and a `region` (`fmin` in [3, 6]) summary.
+- 8 ordinal rows: B0/B1 x B4/CF4 x `single`/`region`, `wlsmv_fmin`, p = 16,
+  5 categories, n = 1,000.
 
-The table is a starting point, not a universal norm: it was generated at
-`p = 16`, with `sample.nobs = 1000` and lavaan 0.7.3. Recompute for other
-dimensions.
+The continuous table was generated at `p = 16`, with `sample.nobs = 1000` and
+lavaan 0.7.3. The ordinal grid converged 1,000/1,000 in every cell but
+98.2%-99.5% of solutions were improper; read the `improper_rate` column before
+using the ordinal rows. Recompute for other dimensions.
 
 ## Reproducibility
 
@@ -106,8 +113,10 @@ the study repository. `data-raw/build-reference.R` documents the generation;
 
 ## Status
 
-Version 0.1.0 supports continuous-data `fmin` (and threshold counts for
-SRMR/RMSEA vectors). The ordinal kernel (WLSMV/SISQUOC) is planned for 0.2.
+Version 0.2.0 supports continuous-data `fmin` and ordinal WLSMV
+`wlsmv_fmin`/`SRMR`. The ordinal grid converged 1,000/1,000 in every cell, but
+98.2%-99.5% of solutions were improper; ordinal reference values are therefore
+FP under improper solutions. SISQUOC/Bayesian ordinal FP is not yet included.
 The package is not yet on CRAN.
 
 ## Citation

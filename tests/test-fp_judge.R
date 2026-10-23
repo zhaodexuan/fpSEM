@@ -39,3 +39,15 @@ e2 <- tryCatch(
   error = function(e) conditionMessage(e)
 )
 stopifnot(grepl("formula_n", e2))
+
+
+# ordinal statistic and data space
+j3 <- fp_judge(
+  fmin = f, df = 88, q = 48, n_obs = 1000,
+  statistic = "wlsmv_fmin", threshold = 1.2,
+  data_space = "ordinal_positive_manifold", convergence = "force",
+  improper_rate = .99
+)
+stopifnot(inherits(j3, "fp_judge"))
+stopifnot(grepl("wlsmv_fmin", j3$conditions))
+stopifnot(grepl("ordinal_positive_manifold", j3$conditions))

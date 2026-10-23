@@ -6,10 +6,10 @@
 #' @param df Model degrees of freedom.
 #' @param q Number of free parameters.
 #' @param n_obs Sample size used in fitting (`sample.nobs`).
-#' @param statistic One of `"fmin"`, `"srmr"`, or `"rmsea"`.
+#' @param statistic One of `"fmin"`, `"srmr"`, `"rmsea"`, or `"wlsmv_fmin"`.
 #' @param threshold Fit threshold (e.g., 4.0 for `fmin`, .05 for SRMR/RMSEA).
 #' @param formula_n Formula N for RMSEA/CFI; required when `statistic = "rmsea"`.
-#' @param data_space `"positive_manifold"` or `"full_elliptope"`; required.
+#' @param data_space Data space (e.g., "positive_manifold", "full_elliptope", "ordinal"); required.
 #' @param convergence `"default"` or `"force"`.
 #' @param convergence_rate Default convergence rate, if known.
 #' @param improper_rate Proportion of returned solutions with `post.check = FALSE`.
@@ -23,7 +23,7 @@
 #'   rate, an `informative` flag, a `conditions` string, and warnings.
 #' @export
 fp_judge <- function(fmin, df, q, n_obs,
-                     statistic = c("fmin", "srmr", "rmsea"),
+                     statistic = c("fmin", "srmr", "rmsea", "wlsmv_fmin"),
                      threshold,
                      formula_n = NULL,
                      data_space,
@@ -36,6 +36,11 @@ fp_judge <- function(fmin, df, q, n_obs,
   convergence <- match.arg(convergence)
   if (missing(threshold)) stop("threshold is required")
   if (missing(data_space)) stop("data_space is required (no default)")
+  data_space <- match.arg(data_space, c(
+    "positive_manifold", "full_elliptope", "ordinal",
+    "ordinal_positive_manifold", "ordinal_full_elliptope",
+    "data_informed"
+  ))
   if (statistic == "rmsea" && is.null(formula_n))
     stop("formula_n is required for RMSEA")
 
@@ -53,8 +58,14 @@ fp_judge <- function(fmin, df, q, n_obs,
   warnings <- character()
   if (common_n < 100)
     warnings <- c(warnings, "common_n < 100; estimate is uninformative")
-  if (!is.na(improper_rate) && improper_rate > .95)
-    warnings <- c(warnings, "improper rate > 95%; FP describes an algorithm on random data")
+  if (!is.na(improper_rate)) {
+    if (improper_rate > .95)
+      warnings <- c(warnings, "improper rate > 95%; FP describes an algorithm on random data")
+    else if (improper_rate > .25)
+      warnings <- c(warnings, "improper rate > 25%; a substantial share of solutions is inadmissible")
+    else if (improper_rate > .05)
+      warnings <- c(warnings, "improper rate > 5%; check solution admissibility")
+  }
 
   conditions <- sprintf("%s<%s | df=%d | formula N=%s | %s | %s",
                         statistic, format(threshold), as.integer(df),

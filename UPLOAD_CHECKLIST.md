@@ -14,7 +14,7 @@ Before pushing to GitHub, replace the placeholders and run the local checks.
 
 ```r
 R CMD build .
-R CMD check --no-manual fpSEM_0.1.0.tar.gz
+R CMD check --no-manual fpSEM_0.2.0.tar.gz
 ```
 
 The check should end with `Status: OK`. The three test files under `tests/`
@@ -30,7 +30,7 @@ a README, because this folder already has one).
 ```bash
 git init -b main
 git add .
-git commit -m "fpSEM 0.1.0"
+git commit -m "fpSEM 0.2.0"
 git remote add origin https://github.com/OWNER/fpSEM.git
 git push -u origin main
 ```

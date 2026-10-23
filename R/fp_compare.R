@@ -7,10 +7,10 @@
 #' @param q_focal,q_comparator Numbers of free parameters.
 #' @param n_obs Sample size used in fitting.
 #' @param label_focal,label_comparator Model labels.
-#' @param statistic Fit statistic; currently `"fmin"`.
+#' @param statistic One of `"fmin"`, `"srmr"`, `"rmsea"`, or `"wlsmv_fmin"`.
 #' @param threshold Fit threshold.
 #' @param formula_n Formula N for RMSEA; required when `statistic = "rmsea"`.
-#' @param data_space `"positive_manifold"` or `"full_elliptope"`; required.
+#' @param data_space Data space (e.g., "positive_manifold", "full_elliptope", "ordinal"); required.
 #' @param convergence `"force"` or `"default"`.
 #' @param convergence_rate_focal,convergence_rate_comparator Default convergence rates.
 #' @param improper_rate_focal,improper_rate_comparator Improper-solution rates.
@@ -38,7 +38,13 @@ fp_compare <- function(fmin_focal, fmin_comparator,
                        grid = seq(3, 6, by = .5),
                        R = 2000, seed = NULL) {
   convergence <- match.arg(convergence)
+  statistic <- match.arg(statistic, c("fmin", "srmr", "rmsea", "wlsmv_fmin"))
   if (missing(data_space)) stop("data_space is required (no default)")
+  data_space <- match.arg(data_space, c(
+    "positive_manifold", "full_elliptope", "ordinal",
+    "ordinal_positive_manifold", "ordinal_full_elliptope",
+    "data_informed"
+  ))
   if (statistic == "rmsea" && is.null(formula_n))
     stop("formula_n is required for RMSEA")
   if (length(fmin_focal) != length(fmin_comparator))
@@ -67,8 +73,15 @@ fp_compare <- function(fmin_focal, fmin_comparator,
   warnings <- character()
   if (common_n < 100)
     warnings <- c(warnings, "common_n < 100; comparison is uninformative")
-  if (any(c(improper_rate_focal, improper_rate_comparator) > .95, na.rm = TRUE))
-    warnings <- c(warnings, "improper rate > 95%; FP describes an algorithm on random data")
+  imp <- suppressWarnings(max(c(improper_rate_focal, improper_rate_comparator), na.rm = TRUE))
+  if (is.finite(imp)) {
+    if (imp > .95)
+      warnings <- c(warnings, "improper rate > 95%; FP describes an algorithm on random data")
+    else if (imp > .25)
+      warnings <- c(warnings, "improper rate > 25%; a substantial share of solutions is inadmissible")
+    else if (imp > .05)
+      warnings <- c(warnings, "improper rate > 5%; check solution admissibility")
+  }
   if (is.finite(delta_fp) && is.finite(delta_region) &&
       sign(delta_fp) != 0 && sign(delta_region) != 0 &&
       sign(delta_fp) != sign(delta_region))

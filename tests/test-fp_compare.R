@@ -35,3 +35,16 @@ e <- tryCatch(
   error = function(e) conditionMessage(e)
 )
 stopifnot(grepl("paired", e))
+
+
+# ordinal statistic and data space
+x3 <- fp_compare(
+  fmin_focal = f, fmin_comparator = c,
+  df_focal = 88, df_comparator = 98,
+  q_focal = 48, q_comparator = 38,
+  n_obs = 1000,
+  statistic = "wlsmv_fmin", threshold = 1.2,
+  data_space = "ordinal_full_elliptope", convergence = "force"
+)
+stopifnot(inherits(x3, "fp_compare"))
+stopifnot(grepl("wlsmv_fmin", x3$conditions))

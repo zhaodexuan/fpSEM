@@ -1,8 +1,7 @@
 Package: fpSEM
 Type: Package
 Title: Fitting Propensity for Structural Equation Models
-Version: 0.1.0
-Date: 2026-10-22
+Version: 0.2.0
 Authors@R: person("Dexuan", "Zhao", email = "zhaodexuan@users.noreply.github.com", role = c("aut", "cre"))
 Description: Computes and compares fitting propensity (FP) for structural
     equation models. The package makes the conditions of an FP claim explicit:
